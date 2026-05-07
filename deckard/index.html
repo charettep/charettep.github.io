@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deckard Cain Sound</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: Arial, sans-serif;
+        }
+        
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+        }
+        
+        h1 {
+            color: white;
+            margin-top: 0;
+            font-size: 24px;
+        }
+        
+        button {
+            background: #FF6B6B;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        button:hover {
+            background: #FF5252;
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        button:active {
+            transform: scale(0.98);
+        }
+        
+        .status {
+            color: white;
+            margin-top: 20px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎵 Deckard Cain</h1>
+        <button id="soundBtn">🔊 Stay Awhile and Listen</button>
+        <div class="status" id="status"></div>
+    </div>
+
+    <audio id="audio" src="https://www.myinstants.com/media/sounds/deckard-cain-stay-awhile-41519.mp3"></audio>
+
+    <script>
+        const button = document.getElementById('soundBtn');
+        const audio = document.getElementById('audio');
+        const status = document.getElementById('status');
+
+        button.addEventListener('click', function() {
+            if (audio.paused) {
+                audio.currentTime = 0;
+                audio.play();
+                button.textContent = '⏸ Stop';
+                status.textContent = 'Playing...';
+            } else {
+                audio.pause();
+                button.textContent = '🔊 Stay Awhile and Listen';
+                status.textContent = '';
+            }
+        });
+
+        audio.addEventListener('ended', function() {
+            button.textContent = '🔊 Stay Awhile and Listen';
+            status.textContent = 'Finished!';
+            setTimeout(() => {
+                status.textContent = '';
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
